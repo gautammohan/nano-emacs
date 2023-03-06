@@ -62,9 +62,6 @@
 ;; Nano header & mode lines (optional)
 (require 'nano-modeline)
 
-;; Nano key bindings modification (optional)
-;;(require 'nano-bindings)
-
 ;; Compact layout (need to be loaded after nano-modeline)
 (when (member "-compact" command-line-args)
   (require 'nano-compact))
