@@ -15,12 +15,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program. If not, see <http://www.gnu.org/licenses/>.
 ;; ---------------------------------------------------------------------
-(package-initialize)
-
-
-;; Path to nano emacs modules (mandatory)
-(add-to-list 'load-path "/Users/rougier/Documents/GitHub/nano-emacs")
-(add-to-list 'load-path ".")
 
 ;; Default layout (optional)
 (require 'nano-layout)
@@ -68,9 +62,6 @@
 ;; Nano header & mode lines (optional)
 (require 'nano-modeline)
 
-;; Nano key bindings modification (optional)
-(require 'nano-bindings)
-
 ;; Compact layout (need to be loaded after nano-modeline)
 (when (member "-compact" command-line-args)
   (require 'nano-compact))
@@ -83,10 +74,6 @@
 (let ((inhibit-message t))
   (message "Welcome to GNU Emacs / N Λ N O edition")
   (message (format "Initialization time: %s" (emacs-init-time))))
-
-;; Splash (optional)
-(unless (member "-no-splash" command-line-args)
-  (require 'nano-splash))
 
 ;; Help (optional)
 (unless (member "-no-help" command-line-args)
