@@ -19,10 +19,9 @@
 ;; along with this program. If not, see <http://www.gnu.org/licenses/>
 ;; -------------------------------------------------------------------
 ;;
-;; Nano mode line format:
+;; Customized Nano mode line format:
 ;;
-;; [ status | name (primary)               secondary | item1 | item2 ]
-;;
+;; [Evil Mode | Major Mode] buffer-name (project, vc-branch, remote-host) line:col
 ;; -------------------------------------------------------------------
 (require 'subr-x)
 (require 'evil)
