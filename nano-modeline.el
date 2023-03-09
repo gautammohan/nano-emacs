@@ -25,6 +25,7 @@
 ;;
 ;; -------------------------------------------------------------------
 (require 'subr-x)
+(require 'evil)
 
 ;; -------------------------------------------------------------------
 (defun vc-branch ()
@@ -36,6 +37,18 @@
 (defun nano-mode-name ()
   (if (listp mode-name) (car mode-name) mode-name))
 
+;; ---------------------------------------------------------------------
+(defun nano-modeline-status ()
+  "Return buffer status: Evil mode and Major mode, colorized accordingly"
+  (let ((evil-tag (string-trim
+                   (evil-generate-mode-line-tag evil-state)
+                   "[<> ]+"
+                   "[<> ]+"))
+        (name (nano-mode-name)))
+    (propertize (concat " " evil-tag " | " name " ") 'face
+                (cond ((string= evil-tag "G") 'nano-face-header-salient)
+                      ((string= evil-tag "I") 'nano-face-header-popout)
+                      (t                      'nano-face-header-faded)))))
 
 ;; From https://amitp.blogspot.com/2011/08/emacs-custom-mode-line.html
 ;; ---------------------------------------------------------------------
@@ -59,7 +72,7 @@
          (window        (get-buffer-window (current-buffer)))
          (space-up       +0.15)
          (space-down     -0.20)
-	 (prefix (propertize (concat (evil-generate-mode-line-tag evil-state) "| " (nano-mode-name) " ") 'face 'nano-face-header-faded))
+	 (prefix status)
          (left (concat
                 (propertize " "  'face 'nano-face-header-default
 			    'display `(raise ,space-up))
