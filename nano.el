@@ -78,10 +78,6 @@
   (message "Welcome to GNU Emacs / N Λ N O edition")
   (message (format "Initialization time: %s" (emacs-init-time))))
 
-;; Splash (optional)
-(unless (member "-no-splash" command-line-args)
-  (require 'nano-splash))
-
 ;; Help (optional)
 (unless (member "-no-help" command-line-args)
   (require 'nano-help))
