@@ -26,7 +26,6 @@
 ;; -------------------------------------------------------------------
 (require 'subr-x)
 
-
 ;; -------------------------------------------------------------------
 (defun vc-branch ()
   (if vc-mode
@@ -60,16 +59,7 @@
          (window        (get-buffer-window (current-buffer)))
          (space-up       +0.15)
          (space-down     -0.20)
-	 (prefix (cond ((string= status "RO")
-			        (propertize (if (window-dedicated-p)" -- " " RO ")
-                                'face 'nano-face-header-popout))
-                   ((string= status "**")
-			        (propertize (if (window-dedicated-p)" -- " " ** ")
-                                'face 'nano-face-header-critical))
-                   ((string= status "RW")
-			        (propertize (if (window-dedicated-p)" -- " " RW ")
-                                'face 'nano-face-header-faded))
-                   (t (propertize status 'face 'nano-face-header-popout))))
+	 (prefix (propertize (concat (evil-generate-mode-line-tag evil-state) "| " (nano-mode-name) " ") 'face 'nano-face-header-faded))
          (left (concat
                 (propertize " "  'face 'nano-face-header-default
 			    'display `(raise ,space-up))
