@@ -44,7 +44,7 @@
                       ((string= evil-tag "I") 'nano-face-header-popout)
                       (t                      'nano-face-header-faded)))))
 
-(defun nano-modeline-buffer-context ()
+(defun nano-modeline-context ()
   "Compute the following buffer information and display the ones that exist:
      - vc branch
      - tramp host path
@@ -93,7 +93,7 @@
                               (position    (format-mode-line "%l:%c")))
                           (nano-modeline-compose (nano-modeline-status)
                                                  buffer-name
-                                                 (nano-modeline-buffer-context)
+                                                 (nano-modeline-context)
                                                  position)))))
 
 ;; ---------------------------------------------------------------------
