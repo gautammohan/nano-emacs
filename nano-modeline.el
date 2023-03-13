@@ -64,7 +64,6 @@
          (window        (get-buffer-window (current-buffer)))
          (space-up       +0.15)
          (space-down     -0.20)
-	 (prefix status)
          (left (concat
                 (propertize " "  'face 'nano-face-header-default
 			    'display `(raise ,space-up))
@@ -74,10 +73,10 @@
 		(propertize primary 'face 'nano-face-header-default)))
          (right (concat secondary " "))
          (available-width (- (window-total-width) 
-			     (length prefix) (length left) (length right)
+			     (length status) (length left) (length right)
 			     (/ (window-right-divider-width) char-width)))
 	 (available-width (max 1 available-width)))
-    (concat prefix
+    (concat status
 	    left
 	    (propertize (make-string available-width ?\ )
                         'face 'nano-face-header-default)
