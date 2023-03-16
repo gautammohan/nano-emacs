@@ -32,13 +32,14 @@
   (if (listp mode-name) (car mode-name) mode-name))
 
 (defun nano-modeline-status ()
-  "Return buffer status: Evil mode and Major mode, colorized accordingly"
+  "Return status: Popper status, Evil state (determines color), and Major mode"
   (let ((evil-tag (string-trim
                    (evil-generate-mode-line-tag evil-state)
                    "[<> ]+"
                    "[<> ]+"))
-        (name (nano-mode-name)))
-    (propertize (concat " " evil-tag " | " name " ") 'face
+        (name (nano-mode-name))
+        (popper-status (if popper-popup-status " POP |" "")))
+    (propertize (concat popper-status " " evil-tag " | " name " ") 'face
                 (cond ((string= evil-tag "G") 'nano-face-header-salient)
                       ((string= evil-tag "I") 'nano-face-header-popout)
                       (t                      'nano-face-header-faded)))))
