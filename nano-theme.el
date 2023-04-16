@@ -755,7 +755,7 @@ function is a convenience wrapper used by `describe-package-1'."
   (nano-theme--minibuffer)
   (nano-theme--buttons)
   (nano-theme--info)
-  (nano-theme--bookmark)
+  ;; (nano-theme--bookmark)
   (nano-theme--speedbar)
   (nano-theme--message)
   (nano-theme--outline)
