@@ -31,6 +31,19 @@
 (defun nano-mode-name ()
   (if (listp mode-name) (car mode-name) mode-name))
 
+;; RW / buffer or file / saved or unsaved. RW = faded vs normal
+(defun nano-buffer-status ()
+  "Computes the face of the buffer name. If a buffer contains
+modifications its font width increases. If a buffer is read only,
+it has a faded color."
+  (propertize (buffer-name)
+              'face `(:inherit ,(if (buffer-modified-p)
+                                    'nano-face-header-strong
+                                  'nano-face-header-default)
+                               :foreground ,(if (and buffer-file-name
+                                                     buffer-read-only)
+                                                nano-color-faded
+                                              nano-color-foreground))))
 (defun nano-modeline-status ()
   "Return status: Popper status, Evil state (determines color), and Major mode"
   (let ((evil-tag (string-trim
@@ -68,7 +81,7 @@
          (left (concat
                 (propertize " "  'face 'nano-face-header-default
 			    'display `(raise ,space-up))
-                (propertize name 'face 'nano-face-header-strong)
+                (nano-buffer-status)
                 (propertize " "  'face 'nano-face-header-default
 			    'display `(raise ,space-down))
 		(propertize primary 'face 'nano-face-header-default)))
